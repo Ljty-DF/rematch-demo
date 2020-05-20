@@ -50,3 +50,60 @@ export const count = {
     },
 }
 ```
+
+### 第三步：Dispatch
+
+dispatch 是我们如何在你的 model 中触发 reducers 和 effects。 Dispatch 标准化了你的 action，而无需编写 action types 或者 action creators。
+
+```c
+import { dispatch } from '@rematch/core'
+
+// state = { count: 0 }
+// reducers
+dispatch({ type: 'count/increment', payload: 1 }) // state = { count: 1 }
+dispatch.count.increment(1) // state = { count: 2 }
+
+// effects
+dispatch({ type: 'count/incrementAsync', payload: 1 }) // state = { count: 3 } after delay
+dispatch.count.incrementAsync(1) // state = { count: 4 } after delay
+
+```
+
+### 第四步：Views
+
+```c
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider, connect } from 'react-redux'
+import store from './index'
+
+const Count = props => (
+    <div>
+        The count is {props.count}
+        <button onClick={props.increment}>increment</button>
+        <button onClick={props.incrementAsync}>incrementAsync</button>
+    </div>
+)
+
+const mapState = state => ({
+    count: state.count,
+})
+
+const mapDispatch = ({ count: { increment, incrementAsync } }) => ({
+    increment: () => increment(1),
+    incrementAsync: () => incrementAsync(1),
+})
+
+const CountContainer = connect(
+    mapState,
+    mapDispatch
+)(Count)
+
+ReactDOM.render(
+    <Provider store={store}>
+        <CountContainer />
+    </Provider>,
+    document.getElementById('root')
+)
+
+```
