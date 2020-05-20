@@ -2,7 +2,9 @@
 
 ## 快速开始
 
-> npm install @rematch/core
+```c
+npm install @rematch/core
+```
 
 ### Init
 
