@@ -1,5 +1,4 @@
 let appModel = {
-  namespace: "app",
   state: {
     count: 0
   },
@@ -11,6 +10,7 @@ let appModel = {
   effects: {
     logState(payload, rootState) {
       console.log(rootState);
+      console.log(payload);
     }
   }
 };
