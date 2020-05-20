@@ -3,8 +3,9 @@ import "./styles.css";
 import { connect } from "react-redux";
 
 function App(props) {
-  console.log(props);
-  const add = useCallback(i => props.add(i), []);
+  console.log("6:", props);
+  // const add = useCallback(i => props.add(i), [props]);
+  const add = props.add;
   return (
     <div className="App">
       <h1>Hello CodeSandbox</h1>
