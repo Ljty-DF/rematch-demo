@@ -1,4 +1,4 @@
-# 重新思考 Redux
+# 重新思考 Redux [rematch](https://rematch.github.io/rematch/#/lang/zh-cn/README)
 
 ## 快速开始
 
